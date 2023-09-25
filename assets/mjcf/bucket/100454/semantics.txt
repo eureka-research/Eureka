@@ -1,2 +1,0 @@
-link_0 hinge handle
-link_1 free bucket_body

@@ -1,5 +1,0 @@
-# @package _global_
-hydra:
-  output_subdir: null
-  run:
-    dir: ./policy-${now:%Y-%m-%d}_${now:%H-%M-%S}

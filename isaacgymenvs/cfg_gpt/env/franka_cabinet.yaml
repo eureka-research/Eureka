@@ -1,4 +1,0 @@
-task: FrankaCabinet
-env_name: franka_cabinet
-description: to open the cabinet door
-max_iterations: 1500

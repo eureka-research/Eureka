@@ -1,2 +1,0 @@
-link_0 hinge leg
-link_1 free leg

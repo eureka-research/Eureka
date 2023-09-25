@@ -1,4 +1,0 @@
-description: This class corresponds to the TwoBallJuggle task. Given one ball in one hand and another one in the other,
-  juggle the balls in the air. 
-env_name: shadow_hand_two_ball_juggle
-task: ShadowHandTwoBallJuggle

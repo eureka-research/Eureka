@@ -1,5 +1,0 @@
-# specifies what the default training mode is when
-# running `ShadowHandOpenAI_LSTM` (version with DR and asymmetric observations, and LSTM)
-defaults:
-  - ShadowHandPPOAsymmLSTM
-  - _self_

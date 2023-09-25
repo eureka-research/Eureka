@@ -1,4 +1,0 @@
-task: AllegroHand
-env_name: allegro_hand
-description: to make the hand spin the object to a target orientation 
-max_iterations: 5000

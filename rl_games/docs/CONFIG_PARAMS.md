@@ -1,3 +1,0 @@
-# Yaml Config Description  
-
-Coming.

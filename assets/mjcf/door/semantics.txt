@@ -1,3 +1,0 @@
-link_0 static door_frame
-link_1 hinge rotation_door
-link_2 hinge rotation_door

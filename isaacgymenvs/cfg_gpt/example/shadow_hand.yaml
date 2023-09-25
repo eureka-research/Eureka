@@ -1,3 +1,0 @@
-task: ShadowHand
-env_name: shadow_hand
-description: the shadow hand spinning the object to a target orientation 

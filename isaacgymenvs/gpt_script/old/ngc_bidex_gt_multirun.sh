@@ -1,2 +1,0 @@
-python train_rl_gpt.py --multirun task=ShadowHandBottleCap 
-# python train_rl_gpt.py --multirun task=ShadowHandOver2Underarm,ShadowHandGraspAndPlace,ShadowHandKettle,ShadowHandLiftUnderarm,ShadowHandOver,ShadowHandPen,ShadowHandPushBlock,ShadowHandReOrientation,ShadowHandScissors,ShadowHandSwingCup,ShadowHandSwitch,ShadowHandTwoCatchUnderarm hydra/output=ngc 

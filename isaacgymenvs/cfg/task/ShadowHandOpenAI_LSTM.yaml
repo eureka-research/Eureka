@@ -1,8 +1,0 @@
-# specifies what the config is when running `ShadowHandOpenAI` in LSTM mode
-
-defaults:
-  - ShadowHandOpenAI_FF
-  - _self_
-
-env:
-  numEnvs: ${resolve_default:8192,${...num_envs}}
