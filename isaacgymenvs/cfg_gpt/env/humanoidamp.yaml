@@ -1,0 +1,3 @@
+task: HumanoidAMP
+env_name: amp/humanoid_amp_base
+description: to make the humanoid do a moon walk with feet sliding off the ground alternatingly to move backward

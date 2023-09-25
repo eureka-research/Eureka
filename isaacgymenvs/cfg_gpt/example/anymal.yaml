@@ -1,0 +1,3 @@
+task: Anymal
+env_name: anymal
+description: to make the quadruped follow randomly chosen x,y, and yaw target velocities

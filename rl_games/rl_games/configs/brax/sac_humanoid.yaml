@@ -1,0 +1,46 @@
+params:  
+  algo:
+    name: sac
+
+  model:
+    name: soft_actor_critic
+
+  network:
+    name: soft_actor_critic
+    separate: True
+    space:
+      continuous:
+
+    mlp:
+      units: [512, 256]
+      activation: relu
+      initializer:
+        name: default
+
+    log_std_bounds: [-5, 2]
+
+  config:
+    name: Humanoid_brax_SAC
+    env_name: brax
+    normalize_input: True
+    reward_shaper:
+      scale_value: 1
+    device: cuda
+    max_epochs: 2000000
+    num_steps_per_episode: 16
+    save_best_after: 100
+    save_frequency: 10000
+    gamma: 0.99
+    init_alpha: 1
+    alpha_lr: 0.0002
+    actor_lr: 0.0003
+    critic_lr: 0.0003
+    critic_tau: 0.005
+    batch_size: 2048
+    learnable_temperature: True
+    num_warmup_steps: 5 # total number of warmup steps: num_actors * num_steps_per_episode * num_warmup_steps
+    replay_buffer_size: 1000000
+    num_actors: 64
+
+    env_config:
+      env_name: humanoid

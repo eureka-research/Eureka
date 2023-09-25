@@ -1,0 +1,6 @@
+As a reward engineer, your objective is to create effective reward functions for reinforcement learning tasks. 
+The task at hand is to write a reward function for the environment that aids the agent in learning the described task. 
+Your reward function should incorporate relevant variables from the environment. 
+For instance, the reward function signature could be: {task_reward_signature_string}. 
+Keep in mind that the reward function will be decorated with @torch.jit.script, so ensure that the code is compatible with TorchScript by using torch tensors instead of numpy arrays. 
+Additionally, any new tensors or variables introduced should be on the same device as the input tensors.

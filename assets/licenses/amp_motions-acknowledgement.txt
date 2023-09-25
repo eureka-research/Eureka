@@ -1,0 +1,22 @@
+The following AMP motion assets in assets/amp/motions were created from animations in the CMU dataset:
+    amp_humanoid_backflip.npy  
+    amp_humanoid_cartwheel.npy  
+    amp_humanoid_dance.npy  
+    amp_humanoid_hop.npy  
+    amp_humanoid_run.npy  
+    amp_humanoid_walk.npy
+
+The following CMU motion capture source data files were used:
+    01_01_cmu.fbx
+    07_01_cmu.fbx
+    08_02_cmu.fbx
+    09_11_cmu.fbx
+    49_08_cmu.fbx
+    55_01_cmu.fbx
+
+Original CMU source data is available in isaacgymenvs/tasks/amp/poselib/data
+
+The data used in this project was obtained from mocap.cs.cmu.edu.
+The database was created with funding from NSF EIA-0196217.
+
+

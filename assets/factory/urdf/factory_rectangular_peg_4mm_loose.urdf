@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="factory_rectangular_peg_4mm_loose">
+    <link name="factory_rectangular_peg_4mm_loose">
+        <visual>
+            <geometry>
+                <mesh filename="../mesh/factory_insertion/factory_rectangular_peg_4mm_loose_subdiv_3x.obj"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="../mesh/factory_insertion/factory_rectangular_peg_4mm_loose_subdiv_3x.obj"/>
+            </geometry>
+            <sdf resolution="256"/>
+        </collision>
+    </link>
+</robot>

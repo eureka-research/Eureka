@@ -1,0 +1,28 @@
+{
+    "source_motion": "data/0005_Jogging001.npy",
+    "target_motion_path": "data/0005_Jogging001_amp.npy",
+    "source_tpose": "data/sfu_tpose.npy",
+    "target_tpose": "data/amp_humanoid_tpose.npy",
+    "joint_mapping": {
+         "Hips": "pelvis",
+         "LeftUpLeg": "left_thigh",
+         "LeftLeg": "left_shin",
+         "LeftFoot": "left_foot",
+         "RightUpLeg": "right_thigh",
+         "RightLeg": "right_shin",
+         "RightFoot": "right_foot",
+         "Spine1": "torso",
+         "Head": "head",
+         "LeftArm": "left_upper_arm",
+         "LeftForeArm": "left_lower_arm",
+         "LeftHand": "left_hand",
+         "RightArm": "right_upper_arm",
+         "RightForeArm": "right_lower_arm",
+         "RightHand": "right_hand"
+    },
+    "rotation": [0.5, 0.5, 0.5, 0.5],
+    "scale": 0.01,
+    "root_height_offset": 0.0,
+    "trim_frame_beg": 0,
+    "trim_frame_end": 100
+}

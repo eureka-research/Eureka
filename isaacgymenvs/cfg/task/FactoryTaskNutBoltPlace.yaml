@@ -1,0 +1,98 @@
+# See schema in factory_schema_config_task.py for descriptions of common parameters.
+
+defaults:
+    - FactoryBase
+    - _self_
+    # - /factory_schema_config_task
+
+name: FactoryTaskNutBoltPlace
+physics_engine: ${..physics_engine}
+
+sim:
+    disable_gravity: True
+
+env:
+    numEnvs: ${resolve_default:128,${...num_envs}}
+    numObservations: 27
+    numActions: 12
+
+    num_gripper_move_sim_steps: 40  # number of timesteps to reserve for moving gripper before first step of episode
+    num_gripper_close_sim_steps: 50  # number of timesteps to reserve for closing gripper onto nut during each reset
+
+randomize:
+    franka_arm_initial_dof_pos: [0.00871, -0.10368, -0.00794, -1.49139, -0.00083,  1.38774,  0.7861]
+    fingertip_midpoint_pos_initial: [0.0, 0.0, 0.2]  # initial position of midpoint between fingertips above table
+    fingertip_midpoint_pos_noise: [0.2, 0.2, 0.1]  # noise on fingertip pos
+    fingertip_midpoint_rot_initial: [3.1416, 0, 3.1416]  # initial rotation of fingertips (Euler)
+    fingertip_midpoint_rot_noise: [0.3, 0.3, 1]  # noise on rotation
+    nut_noise_pos_in_gripper: [0.0, 0.0, 0.01]  # noise on nut position within gripper
+    nut_noise_rot_in_gripper: 0.0  # noise on nut rotation within gripper
+    bolt_pos_xy_initial: [0.0, 0.0]  # initial XY position of nut on table
+    bolt_pos_xy_noise: [0.1, 0.1]  # noise on nut position
+
+rl:
+    pos_action_scale: [0.1, 0.1, 0.1]
+    rot_action_scale: [0.1, 0.1, 0.1]
+    force_action_scale: [1.0, 1.0, 1.0]
+    torque_action_scale: [1.0, 1.0, 1.0]
+
+    clamp_rot: True
+    clamp_rot_thresh: 1.0e-6
+
+    add_obs_bolt_tip_pos: False  # add observation of bolt tip position
+
+    num_keypoints: 4  # number of keypoints used in reward
+    keypoint_scale: 0.5  # length of line of keypoints
+
+    keypoint_reward_scale: 1.0  # scale on keypoint-based reward
+    action_penalty_scale: 0.0  # scale on action penalty
+
+    max_episode_length: 200
+
+    close_error_thresh: 0.1  # threshold below which nut is considered close enough to bolt
+    success_bonus: 0.0  # bonus if nut is close enough to bolt
+
+ctrl:
+    ctrl_type: joint_space_id  # {gym_default,
+                               #  joint_space_ik, joint_space_id, 
+                               #  task_space_impedance, operational_space_motion, 
+                               #  open_loop_force, closed_loop_force,
+                               #  hybrid_force_motion}
+    all:
+        jacobian_type: geometric
+        gripper_prop_gains: [100, 100]
+        gripper_deriv_gains: [2, 2]
+    gym_default:
+        ik_method: dls
+        joint_prop_gains: [40, 40, 40, 40, 40, 40, 40]
+        joint_deriv_gains: [8, 8, 8, 8, 8, 8, 8]
+        gripper_prop_gains: [500, 500]
+        gripper_deriv_gains: [20, 20]
+    joint_space_ik:
+        ik_method: dls
+        joint_prop_gains: [1, 1, 1, 1, 1, 1, 1]
+        joint_deriv_gains: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+    joint_space_id:
+        ik_method: dls
+        joint_prop_gains: [40, 40, 40, 40, 40, 40, 40]
+        joint_deriv_gains: [8, 8, 8, 8, 8, 8, 8]
+    task_space_impedance:
+        motion_ctrl_axes: [1, 1, 1, 1, 1, 1]
+        task_prop_gains: [40, 40, 40, 40, 40, 40]
+        task_deriv_gains: [8, 8, 8, 8, 8, 8]
+    operational_space_motion:
+        motion_ctrl_axes: [1, 1, 1, 1, 1, 1]
+        task_prop_gains: [1, 1, 1, 1, 1, 1]
+        task_deriv_gains: [1, 1, 1, 1, 1, 1]
+    open_loop_force:
+        force_ctrl_axes: [0, 0, 1, 0, 0, 0]
+    closed_loop_force:
+        force_ctrl_axes: [0, 0, 1, 0, 0, 0]
+        wrench_prop_gains: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+    hybrid_force_motion:
+        motion_ctrl_axes: [1, 1, 0, 1, 1, 1]
+        task_prop_gains: [40, 40, 40, 40, 40, 40]
+        task_deriv_gains: [8, 8, 8, 8, 8, 8]
+        force_ctrl_axes: [0, 0, 1, 0, 0, 0]
+        wrench_prop_gains: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+

@@ -1,0 +1,5 @@
+description: This class corresponds to the PushBlock task. This environment involves
+  two hands and two blocks,  we need to use both hands to reach and push the block
+  to the desired goal separately. This is a  relatively simple task
+env_name: shadow_hand_push_block
+task: ShadowHandPushBlock

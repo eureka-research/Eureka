@@ -1,0 +1,3 @@
+task: Quadcopter
+env_name: quadcopter
+description: to make the quadcopter reach and hover near a fixed position

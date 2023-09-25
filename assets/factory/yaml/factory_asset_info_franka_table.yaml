@@ -1,0 +1,7 @@
+franka_hand_length: 0.0584  # distance from origin of hand to origin of finger
+franka_finger_length: 0.053671  # distance from origin of finger to bottom of fingerpad
+franka_fingerpad_length: 0.017608  # distance from top of inner surface of fingerpad to bottom of inner surface of fingerpad
+franka_gripper_width_max: 0.080  # maximum opening width of gripper
+
+table_depth: 0.6  # depth of table
+table_width: 1.0  # width of table

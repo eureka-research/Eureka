@@ -1,0 +1,27 @@
+# See schema in factory_schema_config_env.py for descriptions of common parameters.
+
+defaults:
+    - FactoryBase
+    - _self_
+    - /factory_schema_config_env
+
+sim:
+    disable_franka_collisions: False
+
+    disable_nut_collisions: False
+    disable_bolt_collisions: False
+
+env:
+    env_name: 'FactoryEnvNutBolt'
+
+    desired_subassemblies: ['nut_bolt_m16_tight', 'nut_bolt_m16_loose']
+    nut_lateral_offset: 0.1  # Y-axis offset of nut before initial reset to prevent initial interpenetration with bolt
+    nut_bolt_density: 7850.0
+    nut_bolt_friction: 0.3
+
+    # Subassembly options:
+    # {nut_bolt_m4_tight, nut_bolt_m4_loose,
+    # nut_bolt_m8_tight, nut_bolt_m8_loose,
+    # nut_bolt_m12_tight, nut_bolt_m12_loose,
+    # nut_bolt_m16_tight, nut_bolt_m16_loose,
+    # nut_bolt_m20_tight, nut_bolt_m20_loose}

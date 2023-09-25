@@ -1,0 +1,11 @@
+# @package _global_
+hydra:
+    launcher:
+        cpus_per_task: 20
+        gpus_per_node: 8
+        tasks_per_node: 1
+        timeout_min: 1600
+        mem_gb: 512
+        name: ${hydra.job.name}
+        _target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.LocalLauncher
+        submitit_folder: ${hydra.sweep.dir}/.submitit/%j

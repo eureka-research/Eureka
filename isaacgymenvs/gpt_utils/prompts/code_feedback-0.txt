@@ -1,0 +1,8 @@
+Please thoroughly analyze the feedback on the policy and propose an improved reward function that can better address the task. Here are some useful tips for analyzing the policy feedback:
+    (1) If the success rates consistently remain close to zero, you need to completely revise the reward function.
+    (2) If the values for a particular reward component are consistently similar, it indicates that RL is unable to optimize this component in its current form. You may consider:
+        (a) Adjusting its scale or the value of its temperature parameter.
+        (b) Revising the reward component.
+        (c) Eliminating the reward component.
+    (3) If the magnitude of certain reward components is significantly larger, you need to rescale their values to an appropriate range.
+Please first analyze each existing reward component according to the suggested approach, and then write the code for the reward function.

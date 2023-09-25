@@ -1,0 +1,1 @@
+[{"id":0,"parent":1,"joint":"slider","name":"slider","parts":[{"id":1,"name":"switch"}],"jointData":{"axis":{"origin":[0,0,0],"direction":[0,1,0]},"limit":{"a":0,"b":0.2959999999999998,"noLimit":false,"rotates":false,"noRotationLimit":false,"rotationLimit":0}}},{"id":1,"parent":-1,"joint":"free","name":"base_body","parts":[{"id":2,"name":"base_body"}],"jointData":{}}]

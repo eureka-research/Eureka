@@ -1,0 +1,65 @@
+params:  
+  algo:
+    name: a2c_continuous
+
+  model:
+    name: continuous_a2c_logstd
+
+  network:
+    name: actor_critic
+    separate: True
+    space:
+      continuous:
+        mu_activation: None
+        sigma_activation: None
+        mu_init:
+          name: default
+          scale: 0.02
+        sigma_init:
+          name: const_initializer
+          val: 0
+        fixed_sigma: True
+    mlp:
+      units: [64]
+      activation: relu
+      initializer:
+          name: default
+          scale: 2
+    rnn:
+      name: 'lstm'
+      units: 64
+      layers: 1
+
+  load_checkpoint: False
+  load_path: path
+
+  config:
+    env_name:  LunarLanderContinuous-v2
+    reward_shaper:
+      scale_value: 0.1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.9
+
+    learning_rate: 1e-3
+    name: test
+    score_to_win: 300
+
+    grad_norm: 0.5
+    entropy_coef: 0.0
+    truncate_grads: True
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 16
+    horizon_length: 128
+    minibatch_size: 1024
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule:  adaptive
+    kl_threshold: 0.008
+    normalize_input: True
+    seq_length: 4
+    bounds_loss_coef: 0
+
+    player:
+      render: True

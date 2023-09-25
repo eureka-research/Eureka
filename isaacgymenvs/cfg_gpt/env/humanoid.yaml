@@ -1,0 +1,3 @@
+task: Humanoid # Environment class Name in the environment file
+env_name: humanoid # Environment file name
+description: to make the humanoid run as fast as possible

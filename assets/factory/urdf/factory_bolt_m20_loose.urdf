@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="factory_bolt_m20_loose">
+    <link name="factory_bolt_m20_loose">
+        <visual>
+            <geometry>
+                <mesh filename="../mesh/factory_nut_bolt/factory_bolt_m20_loose.obj"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="../mesh/factory_nut_bolt/factory_bolt_m20_loose.obj"/>
+            </geometry>
+            <sdf resolution="512"/>
+        </collision>
+    </link>
+</robot>
+

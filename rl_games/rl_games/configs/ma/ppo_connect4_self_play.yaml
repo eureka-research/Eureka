@@ -1,0 +1,79 @@
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  network:
+    name: actor_critic
+    separate: False
+    normalization: batch_norm
+    space: 
+      discrete:
+    cnn:
+      type: conv2d
+      activation: relu
+      initializer:
+        name: glorot_normal_initializer
+        gain: 1.4142 
+      regularizer:
+        name: 'None'
+      convs:    
+        - filters: 64
+          kernel_size: 3
+          strides: 1
+          padding: 1
+        - filters: 64
+          kernel_size: 3
+          strides: 1
+          padding: 1
+        - filters: 128
+          kernel_size: 3
+          strides: 1
+          padding: 0 
+    mlp:
+      units: [512]
+      activation: relu
+      initializer:
+        name: glorot_normal_initializer
+        gain: 1.4142 
+      regularizer:
+        name:  'None'
+  config:
+    name: connect4_3
+    reward_shaper:
+        scale_value: 1
+    normalize_advantage: True
+    gamma: 0.995
+    tau: 0.95
+    learning_rate: 2e-4
+    score_to_win: 100
+    grad_norm: 0.5
+    entropy_coef: 0.005
+    truncate_grads: True
+    env_name: connect4_env
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 8
+    horizon_length: 128
+    minibatch_size: 1024
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule: None
+    kl_threshold: 0.05
+    normalize_input: False
+    games_to_track: 1000
+    use_action_masks: True
+    weight_decay: 0.001
+    self_play_config:
+      update_score: 0.1
+      games_to_check: 100
+      env_update_num: 8
+
+    env_config:
+      name: connect_four_v0
+      self_play: True
+      is_human: False
+      random_agent: False
+      config_path: rl_games/configs/ma/ppo_connect4_self_play.yaml

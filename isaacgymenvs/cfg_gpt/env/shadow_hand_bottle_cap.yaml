@@ -1,0 +1,6 @@
+description: This class corresponds to the Bottle Cap task. This environment involves
+  two hands and a bottle, we  need to hold the bottle with one hand and open the bottle
+  cap with the other hand. This skill requires  the cooperation of two hands to ensure
+  that the cap does not fall.
+env_name: shadow_hand_bottle_cap
+task: ShadowHandBottleCap

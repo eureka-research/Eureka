@@ -1,0 +1,49 @@
+
+#Cartpole MLP
+
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  network:
+    name: actor_critic
+    separate: True
+    space: 
+      discrete:
+    mlp:
+      units: [64, 64]
+      activation: relu
+      initializer:
+        name: default
+      regularizer:
+        name: None
+
+  config:
+    env_name: LunarLander-v2
+    reward_shaper:
+        scale_value: 0.1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.9
+    learning_rate: 8e-4
+    name: LunarLander-discrete
+    score_to_win: 500
+    grad_norm: 1.0
+    entropy_coef: 0.01
+    truncate_grads: True
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 16
+    horizon_length: 32
+    minibatch_size: 64
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule: None
+    kl_threshold: 0.008
+    normalize_input: False
+    device: cuda
+    multi_gpu: False
+    use_diagnostics: True

@@ -1,0 +1,5 @@
+description: This class corresponds to the ThreeBallJuggle task. Given two balls in one hand and one in the other,
+  juggle the balls in the air. That is, at any moment in time, there should be at least two balls in the air
+  and at most one in a hand.
+env_name: shadow_hand_three_ball_juggle
+task: ShadowHandThreeBallJuggle

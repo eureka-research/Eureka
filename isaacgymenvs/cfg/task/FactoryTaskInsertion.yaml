@@ -1,0 +1,24 @@
+# See schema in factory_schema_config_task.py for descriptions of common parameters.
+
+defaults:
+    - FactoryBase
+    - _self_
+    # - /factory_schema_config_task
+
+name: FactoryTaskInsertion
+physics_engine: ${..physics_engine}
+
+env:
+    numEnvs: ${resolve_default:128,${...num_envs}}
+    numObservations: 32
+    numActions: 12
+
+randomize:
+    joint_noise: 0.0  # noise on Franka DOF positions [deg]
+    initial_state: random  # initialize plugs in random state or goal state {random, goal}
+    plug_bias_y: -0.1  # if random, Y-axis offset of plug during each reset to prevent initial interpenetration with socket
+    plug_bias_z: 0.0  # if random, Z-axis offset of plug during each reset to prevent initial interpenetration with ground plane
+    plug_noise_xy: 0.05  # if random, XY-axis noise on plug position during each reset
+
+rl:
+    max_episode_length: 1024

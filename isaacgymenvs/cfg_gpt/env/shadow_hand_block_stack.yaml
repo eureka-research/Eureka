@@ -1,0 +1,4 @@
+description: This class corresponds to the Block Stack task. This environment involves
+  dual hands and two blocks, and we need to stack the block as a tower.
+env_name: shadow_hand_block_stack
+task: ShadowHandBlockStack

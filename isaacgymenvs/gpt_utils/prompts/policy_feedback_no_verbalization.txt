@@ -1,0 +1,1 @@
+We trained a RL policy using the provided reward function code and tracked the success rates and episode lengths after every {epoch_freq} epochs and the maximum, mean, minimum values encountered:

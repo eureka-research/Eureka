@@ -1,0 +1,3 @@
+task: FrankaCabinet
+env_name: franka_cabinet
+description: to open the cabinet door

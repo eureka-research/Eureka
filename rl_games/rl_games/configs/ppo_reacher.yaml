@@ -1,0 +1,78 @@
+params:  
+  algo:
+    name: a2c_continuous
+
+  model:
+    name: continuous_a2c_logstd
+
+  network:
+    name: actor_critic
+    separate: True
+    space:
+      continuous:
+        mu_activation: None
+        sigma_activation: None
+        mu_init:
+          name: default
+          scale: 0.02 
+        sigma_init:
+          name: const_initializer
+          val: 0
+        fixed_sigma: True
+    mlp:
+      units: [256,128]
+      activation: relu
+      initializer:
+        name: default         
+      regularizer:
+        name:  'None' #'l2_regularizer'
+        #scale: 0.001
+    rnn1:
+      name: lstm
+      units: 64
+      layers: 1   
+  load_checkpoint: False
+  load_path: './nn/last_walkerep=10001rew=108.35405.pth'
+
+  config:
+    env_name: ReacherPyBulletEnv-v0
+    name: walker
+    reward_shaper:
+      min_val: -1
+      scale_value: 0.1
+
+    normalize_advantage: True
+    gamma: 0.995
+    tau: 0.95
+    learning_rate: 3e-4
+    score_to_win: 300
+    grad_norm: 0.5
+    entropy_coef: 0
+    truncate_grads: True
+    
+    e_clip: 0.2
+    clip_value: False
+    num_actors: 16
+    horizon_length: 256
+    minibatch_size: 1024
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule: none
+    kl_threshold: 0.008
+    normalize_input: True
+    seq_length: 16
+    bounds_loss_coef: 0.00
+    max_epochs: 10000
+    weight_decay: 0.0001
+
+    player:
+      render: True
+      games_num: 200
+
+experiment_config1:
+start_exp: 0
+start_sub_exp: 0
+experiments:
+  - exp:
+    - path: config.bounds_loss_coef
+      value: [0.5]

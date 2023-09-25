@@ -1,0 +1,63 @@
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  network:
+    name: resnet_actor_critic
+    separate: False
+    value_shape: 1
+    space: 
+      discrete:
+    
+    cnn:
+      conv_depths: [16, 32, 32]
+      activation: elu
+      initializer:
+        name: default
+      
+    mlp:
+      units: [512]
+      activation: elu
+      initializer:
+        name: default 
+    rnn1:
+      name: lstm
+      units: 256
+      layers: 1
+  config:
+    reward_shaper:
+        max_val: 10
+        
+    normalize_advantage: True
+    gamma: 0.999
+    tau: 0.95
+    learning_rate: 1e-4
+    name: atari
+    score_to_win: 900
+    grad_norm: 0.5
+    entropy_coef: 0.001
+    truncate_grads: True
+    env_name: openai_gym #'PongNoFrameskip-v4'
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 16
+    horizon_length: 256
+    minibatch_size: 1024
+    mini_epochs: 3
+    critic_coef: 1
+    lr_schedule: polynom_decay
+    kl_threshold: 0.01
+    normalize_input: False
+    seq_length: 4
+    max_epochs: 2000
+    env_config:
+        name: "procgen:procgen-coinrun-v0"
+        procgen: True
+        frames: 4
+        num_levels: 1000
+        start_level: 323
+        limit_steps: True
+        distribution_mode: 'easy'

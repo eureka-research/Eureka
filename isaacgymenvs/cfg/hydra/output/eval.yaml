@@ -1,0 +1,11 @@
+# @package _global_
+
+custom_string: "my_custom_string"
+
+hydra:
+  run:
+    dir: /data2/jasonyma/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}_${custom_string}
+    subdir: ${hydra.job.num}_${hydra.job.override_dirname}
+  sweep:
+    dir: /data2/jasonyma/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}_${custom_string}
+    subdir: ${hydra.job.num}_${hydra.job.override_dirname}

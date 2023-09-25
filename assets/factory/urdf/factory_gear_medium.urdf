@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="factory_gear_medium">
+    <link name="factory_gear_medium">
+        <visual>
+            <geometry>
+                <mesh filename="../mesh/factory_gears/factory_gear_medium_space_5e-4.obj"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="../mesh/factory_gears/factory_gear_medium_space_5e-4.obj"/>
+            </geometry>
+            <sdf resolution="256"/>
+        </collision>
+    </link>
+</robot>

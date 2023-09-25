@@ -1,0 +1,5 @@
+description: This class corresponds to the GraspAndPlace task. This environment consists
+  of dual-hands, an object and a bucket that requires us to pick up the object and
+  put it into the bucket.
+env_name: shadow_hand_grasp_and_place
+task: ShadowHandGraspAndPlace

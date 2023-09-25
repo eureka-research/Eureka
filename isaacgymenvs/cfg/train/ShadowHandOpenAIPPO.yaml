@@ -1,0 +1,6 @@
+# specifies what the default training mode is when
+# running `ShadowHandOpenAI` (version with DR and asymmetric observations)
+# (currently defaults to asymmetric training)
+defaults:
+  - ShadowHandPPOAsymm
+  - _self_

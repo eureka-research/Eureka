@@ -1,0 +1,74 @@
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  load_checkpoint: False
+  load_path: 'nn/5msmac_cnn.pth'
+
+  network:
+    name: actor_critic
+    separate: True
+    #normalization: layer_norm
+    space: 
+      discrete:
+      
+    cnn:
+      type: conv1d
+      activation: relu
+      initializer:
+        name: default
+      regularizer:
+        name: 'None'
+      convs:    
+        - filters: 256
+          kernel_size: 3
+          strides: 1
+          padding: 1
+        - filters: 512
+          kernel_size: 3
+          strides: 1
+          padding: 1
+        - filters: 1024
+          kernel_size: 3
+          strides: 1
+          padding: 1
+    mlp:
+      units: [256, 128]
+      activation: relu
+      initializer:
+        name: default 
+      regularizer:
+        name:  'None'
+  config:
+    name: 5m
+    reward_shaper:
+      scale_value: 1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.95
+    learning_rate: 1e-4
+    score_to_win: 20
+    grad_norm: 0.5
+    entropy_coef: 0.005
+    truncate_grads: True
+    env_name: smac_cnn
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 8
+    horizon_length: 128
+    minibatch_size: 2560
+    mini_epochs: 4
+    critic_coef: 2
+    lr_schedule: None
+    kl_threshold: 0.05
+    normalize_input: True
+    seq_length: 2
+    use_action_masks: True
+    env_config:
+      name: 5m_vs_6m
+      frames: 4
+      transpose: False
+      random_invalid_step: False

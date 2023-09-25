@@ -1,0 +1,13 @@
+The Python environment is {task_obs_code_string}
+
+Tasks Solved: Walk, Run, Cart-Wheel
+
+Write reward function for an interesting task for this environment. You should be cognizant of the tasks that the agent can already solve ("Task Solved:") and propose new tasks that are not too easy or too hard. For each task and its reward function, please format your code as follow:
+
+Task:
+Reward Function Code: 
+```
+```
+
+The task name should be succinct. 
+

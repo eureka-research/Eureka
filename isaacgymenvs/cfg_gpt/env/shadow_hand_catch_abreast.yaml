@@ -1,0 +1,8 @@
+description: This class corresponds to the Catch Abreast task. This environment consists
+  of two shadow hands placed  side by side in the same direction and an object that
+  needs to be passed. Compared with the previous  environment which is more like passing
+  objects between the hands of two people, this environment is  designed to simulate
+  the two hands of the same person passing objects, so different catch techniques  are
+  also required and require more hand translation and rotation techniques.
+env_name: shadow_hand_catch_abreast
+task: ShadowHandCatchAbreast

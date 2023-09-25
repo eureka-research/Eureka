@@ -1,0 +1,11 @@
+The reward function should produce two outputs:
+    (1) the total reward,
+    (2) a dictionary of each individual reward component.
+
+The code output should be formatted as a python code string: "```python ... ```".
+
+Here are some helpful tips for writing the reward function code:
+    (1) It may be useful to normalize the reward by applying transformations like torch.exp to the overall reward or its components.
+    (2) If you decide to transform a reward component, you must also include a temperature parameter within the transformation function. This parameter should be a named variable in the reward function and not an input variable. Each transformed reward component should have its own temperature variable.
+    (3) Ensure that the type of each input variable is correctly specified. A float input variable should not be specified as torch.Tensor.
+    (4) Most importantly, the reward code's input variables should only include attributes of the provided environment class definition. In other words, you cannot introduce new input variables under any circumstances.

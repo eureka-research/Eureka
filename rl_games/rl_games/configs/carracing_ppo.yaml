@@ -1,0 +1,85 @@
+params:  
+  algo:
+    name: a2c_continuous
+
+  model:
+    name: continuous_a2c_logstd
+
+  load_checkpoint: False
+  load_path: 'nn/runCarRacing-v0'
+
+  network:
+    name: actor_critic
+    separate: False
+    space:
+      continuous:
+        mu_activation: None
+        sigma_activation: None
+        mu_init:
+          name: default
+        sigma_init:
+          name: const_initializer
+          val: 0
+        fixed_sigma: True
+
+    cnn:
+      type: conv2d
+      activation: relu
+      initializer:
+          name: default
+      regularizer:
+        name: 'None'
+      convs:    
+        - filters: 32
+          kernel_size: 8
+          strides: 4
+          padding: 0
+        - filters: 64
+          kernel_size: 4
+          strides: 2
+          padding: 0
+        - filters: 64
+          kernel_size: 3
+          strides: 1
+          padding: 0
+      
+    mlp:
+      units: [512]
+      activation: relu
+      initializer:
+          name: default
+      regularizer:
+        name: None
+
+  config:
+    env_name:  CarRacing-v0
+    reward_shaper:
+        scale_value: 1
+        
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.9
+    learning_rate: 5e-4
+    name: racing
+    score_to_win: 900
+    grad_norm: 0.5
+    entropy_coef: 0.000
+    truncate_grads: True
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 16
+    horizon_length: 128
+    minibatch_size: 1024
+    mini_epochs: 8
+    critic_coef: 1
+    lr_schedule: None # adaptive
+    kl_threshold: 0.008
+    normalize_input: False
+    normalize_value: True
+    # kl_threshold: 0.008
+    bounds_loss_coef: 0.001
+    # max_epochs: 5000
+
+    player:
+      render: True
+      deterministic: True

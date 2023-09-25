@@ -1,0 +1,87 @@
+# See schema in factory_schema_config_task.py for descriptions of common parameters.
+
+defaults:
+    - FactoryBase
+    - _self_
+    # - /factory_schema_config_task
+
+name: FactoryTaskNutBoltScrew
+physics_engine: ${..physics_engine}
+
+sim:
+    disable_gravity: False
+
+env:
+    numEnvs: ${resolve_default:128,${...num_envs}}
+    numObservations: 32
+    numActions: 12
+
+randomize:
+    franka_arm_initial_dof_pos: [1.5178e-03, -1.9651e-01, -1.4364e-03, -1.9761e+00, -2.7717e-04, 1.7796e+00, 7.8556e-01]
+    nut_rot_initial: 30.0  # initial rotation of nut from configuration in CAD [deg]; default = 30.0 (gripper aligns with flat surfaces of nut)
+
+rl:
+    pos_action_scale: [0.1, 0.1, 0.1]
+    rot_action_scale: [0.1, 0.1, 0.1]
+    force_action_scale: [1.0, 1.0, 1.0]
+    torque_action_scale: [1.0, 1.0, 1.0]
+
+    unidirectional_rot: True  # constrain Franka Z-rot to be unidirectional
+    unidirectional_force: False  # constrain Franka Z-force to be unidirectional (useful for debugging)
+
+    clamp_rot: True
+    clamp_rot_thresh: 1.0e-6
+
+    add_obs_finger_force: False  # add observations of force on left and right fingers
+
+    keypoint_reward_scale: 1.0  # scale on keypoint-based reward
+    action_penalty_scale: 0.0  # scale on action penalty
+
+    max_episode_length: 8192  # terminate episode after this number of timesteps (failure)
+
+    far_error_thresh: 0.100  # threshold above which nut is considered too far from bolt
+    success_bonus: 0.0  # bonus if nut is close enough to base of bolt shank
+
+ctrl:
+    ctrl_type: operational_space_motion  # {gym_default,
+                                         #  joint_space_ik, joint_space_id, 
+                                         #  task_space_impedance, operational_space_motion, 
+                                         #  open_loop_force, closed_loop_force,
+                                         #  hybrid_force_motion}
+    all:
+        jacobian_type: geometric
+        gripper_prop_gains: [100, 100]
+        gripper_deriv_gains: [1, 1]
+    gym_default:
+        ik_method: dls
+        joint_prop_gains: [40, 40, 40, 40, 40, 40, 40]
+        joint_deriv_gains: [8, 8, 8, 8, 8, 8, 8]
+        gripper_prop_gains: [500, 500]
+        gripper_deriv_gains: [20, 20]
+    joint_space_ik:
+        ik_method: dls
+        joint_prop_gains: [1, 1, 1, 1, 1, 1, 1]
+        joint_deriv_gains: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+    joint_space_id:
+        ik_method: dls
+        joint_prop_gains: [40, 40, 40, 40, 40, 40, 40]
+        joint_deriv_gains: [8, 8, 8, 8, 8, 8, 8]
+    task_space_impedance:
+        motion_ctrl_axes: [1, 1, 1, 1, 1, 1]
+        task_prop_gains: [40, 40, 40, 40, 40, 40]
+        task_deriv_gains: [8, 8, 8, 8, 8, 8]
+    operational_space_motion:
+        motion_ctrl_axes: [0, 0, 1, 0, 0, 1]
+        task_prop_gains: [1, 1, 1, 1, 1, 200]
+        task_deriv_gains: [1, 1, 1, 1, 1, 1]
+    open_loop_force:
+        force_ctrl_axes: [0, 0, 1, 0, 0, 0]
+    closed_loop_force:
+        force_ctrl_axes: [0, 0, 1, 0, 0, 0]
+        wrench_prop_gains: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+    hybrid_force_motion:
+        motion_ctrl_axes: [1, 1, 0, 1, 1, 1]
+        task_prop_gains: [40, 40, 40, 40, 40, 40]
+        task_deriv_gains: [8, 8, 8, 8, 8, 8]
+        force_ctrl_axes: [0, 0, 1, 0, 0, 0]
+        wrench_prop_gains: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]

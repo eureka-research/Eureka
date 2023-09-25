@@ -1,0 +1,73 @@
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  network:
+    name: actor_critic
+    separate: True
+    #normalization: layer_norm
+    space: 
+      discrete:
+      
+    cnn:
+      type: conv1d
+      activation: relu
+      initializer:
+        name: default
+        scale: 1.3 
+      regularizer:
+        name: 'None'
+      convs:    
+        - filters: 64
+          kernel_size: 3
+          strides: 2
+          padding: 0
+        - filters: 128
+          kernel_size: 3
+          strides: 1
+          padding: 0
+        - filters: 256
+          kernel_size: 3
+          strides: 1
+          padding: 0
+    mlp:
+      units: [256, 128]
+      activation: relu
+      initializer:
+        name: default
+      regularizer:
+        name:  'None'
+  config:
+    name: MMM2_cnn
+    reward_shaper:
+      scale_value: 1.3
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.95
+    learning_rate: 1e-4
+    score_to_win: 20
+    grad_norm: 0.5
+    entropy_coef: 0.005
+    truncate_grads: True
+    env_name: smac_cnn
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 8
+    horizon_length: 64
+    minibatch_size: 2560
+    mini_epochs: 1
+    critic_coef: 2
+    lr_schedule: None
+    kl_threshold: 0.05
+    normalize_input: False
+    use_action_masks: True
+
+    env_config:
+      name: MMM2
+      frames: 4
+      transpose: False # for pytorch transpose == not Transpose in tf
+      random_invalid_step: False
+      replay_save_freq: 100

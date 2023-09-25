@@ -1,0 +1,6 @@
+description: This class corresponds to the DoorCloseInward task. This environment
+  require a closed door  to be opened and the door can only be pushed outward or initially
+  open inward. Both these two  environments only need to do the push behavior, so
+  it is relatively simple
+env_name: shadow_hand_door_close_inward
+task: ShadowHandDoorCloseInward

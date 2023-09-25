@@ -1,0 +1,8 @@
+# used to create the object
+defaults:
+  - Humanoid
+  - _self_
+
+# if given, will override the device setting in gym.
+env:
+  numEnvs: ${resolve_default:64,${...num_envs}}
