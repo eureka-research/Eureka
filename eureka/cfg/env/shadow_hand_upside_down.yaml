@@ -1,0 +1,3 @@
+task: ShadowHandUpsideDown
+env_name: shadow_hand_upside_down
+description: to make the shadow hand, whose palm faces down, spin the object to a target orientation; 

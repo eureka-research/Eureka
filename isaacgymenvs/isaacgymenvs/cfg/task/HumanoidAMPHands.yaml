@@ -1,0 +1,128 @@
+# used to create the object
+name: HumanoidAMP
+
+physics_engine: ${..physics_engine}
+
+# if given, will override the device setting in gym.
+env: 
+  numEnvs: ${resolve_default:4096,${...num_envs}}
+  envSpacing: 5
+  episodeLength: 300
+  cameraFollow: True # if the camera follows humanoid or not
+  enableDebugVis: False
+  
+  pdControl: True
+  powerScale: 1.0
+  controlFrequencyInv: 2 # 30 Hz
+  stateInit: "Random"
+  hybridInitProb: 0.5
+  numAMPObsSteps: 2
+
+  localRootObs: False
+  contactBodies: ["right_foot", "left_foot", "right_hand", "left_hand"]
+  terminationHeight: 0.5
+  enableEarlyTermination: True
+
+  # animation files to learn from
+  motion_file: "amp_humanoid_cartwheel.npy"
+
+  asset:
+    assetFileName: "mjcf/amp_humanoid.xml"
+
+  plane:
+    staticFriction: 1.0
+    dynamicFriction: 1.0
+    restitution: 0.0
+
+sim:
+  dt: 0.0166 # 1/60 s
+  substeps: 2
+  up_axis: "z"
+  use_gpu_pipeline: ${eq:${...pipeline},"gpu"}
+  gravity: [0.0, 0.0, -9.81]
+  physx:
+    num_threads: ${....num_threads}
+    solver_type: ${....solver_type}
+    use_gpu: ${contains:"cuda",${....sim_device}} # set to False to run on CPU
+    num_position_iterations: 4
+    num_velocity_iterations: 0
+    contact_offset: 0.02
+    rest_offset: 0.0
+    bounce_threshold_velocity: 0.2
+    max_depenetration_velocity: 10.0
+    default_buffer_size_multiplier: 5.0
+    max_gpu_contact_pairs: 8388608 # 8*1024*1024
+    num_subscenes: ${....num_subscenes}
+    contact_collection: 1 # 0: CC_NEVER (don't collect contact info), 1: CC_LAST_SUBSTEP (collect only contacts on last substep), 2: CC_ALL_SUBSTEPS (broken - do not use!)
+
+task:
+  randomize: False
+  randomization_params:
+    # specify which attributes to randomize for each actor type and property
+    frequency: 600   # Define how many environment steps between generating new randomizations
+    observations:
+      range: [0, .002] # range for the white noise
+      operation: "additive"
+      distribution: "gaussian"
+    actions:
+      range: [0., .02]
+      operation: "additive"
+      distribution: "gaussian"
+    sim_params: 
+      gravity:
+        range: [0, 0.4]
+        operation: "additive"
+        distribution: "gaussian"
+        schedule: "linear"  # "linear" will linearly interpolate between no rand and max rand
+        schedule_steps: 3000
+    actor_params:
+      humanoid:
+        color: True
+        rigid_body_properties:
+          mass: 
+            range: [0.5, 1.5]
+            operation: "scaling"
+            distribution: "uniform"
+            setup_only: True # Property will only be randomized once before simulation is started. See Domain Randomization Documentation for more info.
+            schedule: "linear"  # "linear" will linearly interpolate between no rand and max rand
+            schedule_steps: 3000
+        rigid_shape_properties:
+          friction:
+            num_buckets: 500
+            range: [0.7, 1.3]
+            operation: "scaling"
+            distribution: "uniform"
+            schedule: "linear"  # "linear" will scale the current random sample by `min(current num steps, schedule_steps) / schedule_steps`
+            schedule_steps: 3000
+          restitution:
+            range: [0., 0.7]
+            operation: "scaling"
+            distribution: "uniform"
+            schedule: "linear"  # "linear" will scale the current random sample by `min(current num steps, schedule_steps) / schedule_steps`
+            schedule_steps: 3000
+        dof_properties:
+          damping: 
+            range: [0.5, 1.5]
+            operation: "scaling"
+            distribution: "uniform"
+            schedule: "linear"  # "linear" will scale the current random sample by `min(current num steps, schedule_steps) / schedule_steps`
+            schedule_steps: 3000
+          stiffness: 
+            range: [0.5, 1.5]
+            operation: "scaling"
+            distribution: "uniform"
+            schedule: "linear"  # "linear" will scale the current random sample by `min(current num steps, schedule_steps) / schedule_steps`
+            schedule_steps: 3000
+          lower:
+            range: [0, 0.01]
+            operation: "additive"
+            distribution: "gaussian"
+            schedule: "linear"  # "linear" will scale the current random sample by `min(current num steps, schedule_steps) / schedule_steps`
+            schedule_steps: 3000
+          upper:
+            range: [0, 0.01]
+            operation: "additive"
+            distribution: "gaussian"
+            schedule: "linear"  # "linear" will scale the current random sample by `min(current num steps, schedule_steps) / schedule_steps`
+            schedule_steps: 3000
+

@@ -1,0 +1,60 @@
+
+#Cartpole without velocities lstm test
+
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  load_checkpoint: False
+  load_path: path
+
+  network:
+    name: actor_critic
+    separate: True
+    space: 
+      discrete:
+
+    mlp:
+      units: [64, 64]
+      activation: relu
+      normalization: 'layer_norm'
+      norm_only_first_layer: True
+      initializer:
+        name: default
+      regularizer:
+        name: None
+    rnn:
+      name: 'lstm'
+      units: 64
+      layers: 2
+      before_mlp: False
+      concat_input: True
+      layer_norm: True
+
+  config:
+    env_name: CartPoleMaskedVelocity-v1
+    reward_shaper:
+        scale_value: 0.1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.9
+    learning_rate: 1e-4
+    name: cartpole_vel_info
+    score_to_win: 500
+    grad_norm: 0.5
+    entropy_coef: 0.01
+    truncate_grads: True
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 16
+    horizon_length: 256
+    minibatch_size: 2048
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule: None
+    kl_threshold: 0.008
+    normalize_input: False
+    seq_length: 4

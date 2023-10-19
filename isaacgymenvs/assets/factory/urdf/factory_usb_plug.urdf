@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="factory_usb_plug">
+    <link name="factory_usb_plug">
+        <visual>
+            <geometry>
+                <mesh filename="../mesh/factory_insertion/factory_usb_plug_viz.obj"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="../mesh/factory_insertion/factory_usb_plug_coll.obj"/>
+            </geometry>
+            <sdf resolution="256"/>
+        </collision>
+    </link>
+</robot>

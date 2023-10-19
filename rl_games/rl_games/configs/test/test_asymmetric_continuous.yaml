@@ -1,0 +1,93 @@
+params:  
+  algo:
+    name: a2c_continuous
+
+  model:
+    name: continuous_a2c_logstd
+
+  network:
+    name: actor_critic
+    separate: True
+    space:
+      continuous:
+        mu_activation: None
+        sigma_activation: None
+        mu_init:
+          name: default
+        sigma_init:
+          name: const_initializer
+          val: 0
+        fixed_sigma: True
+
+    mlp:
+      units: [64]
+      #normalization: 'layer_norm'
+      activation: elu
+      initializer:
+        name: default
+      regularizer:
+        name: None
+    rnn:
+      name: lstm
+      units: 64
+      layers: 1
+      layer_norm: True
+  config:
+    reward_shaper:
+        scale_value: 1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.9
+    learning_rate: 5e-4
+    name: test_asymmetric_continuous
+    score_to_win: 100000
+    grad_norm: 0.5
+    entropy_coef: 0.005
+    truncate_grads: True
+    env_name: openai_gym
+    e_clip: 0.2
+    clip_value: False
+    num_actors: 16
+    horizon_length: 256
+    minibatch_size: 2048
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule: None
+    kl_threshold: 0.008
+    normalize_input: True
+    normalize_value: True
+    seq_length: 4
+    weight_decay: 0.0000
+    multi_gpu: True
+    bounds_loss_coef: 0.0
+    use_diagnostics: True
+    env_config:
+      name: TestAsymmetricEnv-v0
+      wrapped_env_name: LunarLanderContinuous-v2
+      apply_mask: False
+      use_central_value: True
+
+    central_value_config:
+      minibatch_size: 512
+      mini_epochs: 4
+      learning_rate: 5e-4
+      clip_value: False
+      normalize_input: True
+      truncate_grads: True
+      grad_norm: 10
+      network:
+        name: actor_critic
+        central_value: True
+        mlp:
+          units: [64]
+          activation: relu
+          initializer:
+            name: default
+          regularizer:
+            name: None
+        rnn:
+          name: lstm
+          units: 64
+          layers: 1
+          layer_norm: False
+          before_mlp: False

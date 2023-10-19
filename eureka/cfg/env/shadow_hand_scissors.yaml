@@ -1,0 +1,4 @@
+description: This class corresponds to the Scissors task. This environment involves
+  two hands and scissors,  we need to use two hands to open the scissors
+env_name: shadow_hand_scissors
+task: ShadowHandScissors

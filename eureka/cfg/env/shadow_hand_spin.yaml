@@ -1,0 +1,3 @@
+task: ShadowHandSpin
+env_name: shadow_hand_spin
+description: to make the shadow hand spin the pen to a target orientation

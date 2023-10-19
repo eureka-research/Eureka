@@ -1,0 +1,84 @@
+params:  
+  seed: 322
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  network:
+    name: actor_critic
+    separate: False
+    space: 
+      discrete:
+
+    cnn:
+      permute_input: True
+      type: conv2d
+      activation: elu
+      initializer:
+        name: default
+        #name: glorot_normal_initializer
+        #gain: 1.4142
+      regularizer:
+        name: None
+      convs:    
+        - filters: 32
+          kernel_size: 8
+          strides: 4
+          padding: 0
+        - filters: 64
+          kernel_size: 4
+          strides: 2
+          padding: 0
+        - filters: 64
+          kernel_size: 3
+          strides: 1
+          padding: 0
+      
+    mlp:
+      units: [512]
+      activation: elu
+      initializer:
+        name: orthogonal_initializer
+        gain: 1.41421356237
+
+  config:
+    name: Pong-v5_cule
+    env_name: cule
+    score_to_win: 20.0
+    normalize_value: True 
+    normalize_input: True
+    reward_shaper:
+      min_val: -1
+      max_val: 1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.95
+    learning_rate: 3e-4
+    lr_schedule: adaptive
+    kl_threshold: 0.01
+    grad_norm: 1.0
+    entropy_coef: 0.01
+    truncate_grads: True
+    e_clip: 0.2
+    clip_value: False
+    num_actors: 512
+    horizon_length: 64
+    minibatch_size: 2048
+    mini_epochs: 4
+    critic_coef: 2
+    #schedule_entropy: True
+    #update_norm_in_train: True
+    max_epochs: 500
+    use_diagnostics: False
+
+    env_config:
+      env_name: pong
+      has_lives: False
+
+    player:
+      render: False
+      games_num: 100
+      n_game_life: 1
+      deterministic: True

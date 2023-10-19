@@ -1,0 +1,4 @@
+description: This class corresponds to the Open Pen Cap task. This environment involves
+  two hands and a pen, we need to use two hands to open the pen cap.
+env_name: shadow_hand_pen
+task: ShadowHandPen

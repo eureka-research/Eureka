@@ -1,0 +1,84 @@
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  network:
+    name: actor_critic
+    separate: False
+    space: 
+      discrete:
+
+    cnn:
+      type: conv2d
+      activation: relu
+      initializer:
+        name: glorot_normal_initializer
+        gain: 1.4142
+      convs:    
+        - filters: 32
+          kernel_size: 8
+          strides: 4
+          padding: 0
+        - filters: 64
+          kernel_size: 4
+          strides: 2
+          padding: 0
+        - filters: 64
+          kernel_size: 3
+          strides: 1
+          padding: 0
+      
+    mlp:
+      units: [512]
+      activation: relu
+      regularizer:
+        name: 'None'
+      initializer:
+        name: glorot_normal_initializer
+        gain: 1.4142 
+  config:
+    reward_shaper:
+      min_val: -1
+      max_val: 1
+        
+    normalize_advantage: True
+    gamma: 0.999
+    tau: 0.95
+    learning_rate: 5e-4
+    name: invader
+    score_to_win: 9000
+    grad_norm: 0.5
+    entropy_coef: 0.005
+    truncate_grads: True
+    env_name: atari_gym
+    e_clip: 0.2
+    clip_value: False
+    num_actors: 24
+    horizon_length: 256
+    minibatch_size: 768
+    mini_epochs: 3
+    critic_coef: 1
+    lr_schedule:  None
+    kl_threshold: 0.008
+    normalize_input: False
+    seq_length: 8
+    use_diagnostics: True
+    normalize_value: True
+    #lr_schedule:  adaptive
+    # kl_threshold: 0.008
+    # bounds_loss_coef: 0.5
+    # max_epochs: 5000
+
+    env_config:
+      skip: 4
+      name: 'SpaceInvadersNoFrameskip-v4'
+      episode_life: False
+
+    player:
+        render: True
+        games_num: 10
+        n_game_life: 1
+        deterministic: True

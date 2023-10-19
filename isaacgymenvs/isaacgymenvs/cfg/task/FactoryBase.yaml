@@ -1,0 +1,43 @@
+# See schema in factory_schema_config_base.py for descriptions of parameters.
+
+defaults:
+    - _self_
+    #- /factory_schema_config_base
+
+mode:
+    export_scene: False
+    export_states: False
+
+sim:
+    dt: 0.016667
+    substeps: 2
+    up_axis: "z"
+    use_gpu_pipeline: ${eq:${...pipeline},"gpu"}
+    gravity: [0.0, 0.0, -9.81]
+    add_damping: True
+
+    physx:
+        solver_type: ${....solver_type}
+        num_threads: ${....num_threads}
+        num_subscenes: ${....num_subscenes}
+        use_gpu: ${contains:"cuda",${....sim_device}}
+
+        num_position_iterations: 16
+        num_velocity_iterations: 0
+        contact_offset: 0.005
+        rest_offset: 0.0
+        bounce_threshold_velocity: 0.2
+        max_depenetration_velocity: 5.0
+        friction_offset_threshold: 0.01
+        friction_correlation_distance: 0.00625
+
+        max_gpu_contact_pairs: 1048576  # 1024 * 1024
+        default_buffer_size_multiplier: 8.0
+        contact_collection: 1 # 0: CC_NEVER (don't collect contact info), 1: CC_LAST_SUBSTEP (collect only contacts on last substep), 2: CC_ALL_SUBSTEPS (broken - do not use!)
+    
+env:
+    env_spacing: 0.5
+    franka_depth: 0.5
+    table_height: 0.4
+    franka_friction: 1.0
+    table_friction: 0.3

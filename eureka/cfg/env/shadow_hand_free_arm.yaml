@@ -1,0 +1,3 @@
+task: ShadowHandFreeArm
+env_name: shadow_hand_free_arm
+description: to make the shadow hand, whose arm is not fixed, spin the object to a target orientation; 

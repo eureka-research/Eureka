@@ -1,0 +1,3 @@
+task: Cartpole
+env_name: cartpole
+description: to balance a pole on a cart so that the pole stays upright

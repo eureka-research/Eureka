@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="factory_nut_m16_tight">
+    <link name="factory_nut_m16_tight">
+        <visual>
+            <geometry>
+                <mesh filename="../mesh/factory_nut_bolt/factory_nut_m16_tight_subdiv_3x.obj"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="../mesh/factory_nut_bolt/factory_nut_m16_tight_subdiv_3x.obj"/>
+            </geometry>
+            <sdf resolution="256"/>
+        </collision>
+    </link>
+</robot>

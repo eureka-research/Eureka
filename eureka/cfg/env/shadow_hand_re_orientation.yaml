@@ -1,0 +1,5 @@
+description: This class corresponds to the ReOrientation task. This environment involves
+  two hands and two objects.  Each hand holds an object and we need to reorient the
+  object to the target orientation
+env_name: shadow_hand_re_orientation
+task: ShadowHandReOrientation

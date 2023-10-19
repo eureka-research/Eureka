@@ -1,0 +1,68 @@
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  network:
+    name: testnet
+  config:
+    reward_shaper:
+      scale_value: 1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.9
+    learning_rate: 2e-4
+    name: test_md_multi_obs
+    score_to_win: 0.95
+    grad_norm: 10.5
+    entropy_coef: 0.005
+    truncate_grads: True
+    env_name: test_env
+    e_clip: 0.2
+    clip_value: False
+    num_actors: 16
+    horizon_length: 256
+    minibatch_size: 2048
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule: None
+    kl_threshold: 0.008
+    normalize_input: False
+    normalize_value: False
+    weight_decay: 0.0000
+    max_epochs: 10000
+    seq_length: 16
+    save_best_after: 10
+    save_frequency: 20
+
+    env_config:
+      name: TestRnnEnv-v0
+      hide_object: False
+      apply_dist_reward: False
+      min_dist: 2
+      max_dist: 8
+      use_central_value: True
+      multi_obs_space: True
+      multi_head_value: False
+    player:
+        games_num: 100
+        deterministic: True
+
+    central_value_config:
+      minibatch_size: 512
+      mini_epochs: 4
+      learning_rate: 5e-4
+      clip_value: False
+      normalize_input: False
+      truncate_grads: True
+      grad_norm: 10
+      network:
+        name: testnet
+        central_value: True
+        mlp:
+          units: [64,32]
+          activation: relu
+          initializer:
+            name: default

@@ -1,0 +1,5 @@
+description: This class corresponds to the Switch task. This environment involves
+  dual hands and a bottle, we  need to use dual hand fingers to press the desired
+  button
+env_name: shadow_hand_switch
+task: ShadowHandSwitch

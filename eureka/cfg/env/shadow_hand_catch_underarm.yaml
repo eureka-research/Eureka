@@ -1,0 +1,7 @@
+description: This class corresponds to the Catch Underarm task. In this task, two
+  shadow hands with palms facing upwards are controlled to pass an object from one
+  palm to the other. What makes it more difficult  than the Hand over task is that
+  the hands' translation and rotation degrees of freedom are no longer  frozen but
+  are added into the action space
+env_name: shadow_hand_catch_underarm
+task: ShadowHandCatchUnderarm

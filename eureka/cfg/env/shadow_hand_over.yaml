@@ -1,0 +1,10 @@
+description: This class corresponds to the HandOver task. This environment consists
+  of two shadow hands with palms facing up, opposite each other, and an object that
+  needs to be passed. In the beginning,  the object will fall randomly in the area
+  of the shadow hand on the right side. Then the hand  holds the object and passes
+  the object to the other hand. Note that the base of the hand is  fixed. More importantly,
+  the hand which holds the object initially can not directly touch the  target, nor
+  can it directly roll the object to the other hand, so the object must be thrown
+  up  and stays in the air in the process
+env_name: shadow_hand_over
+task: ShadowHandOver

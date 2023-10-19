@@ -1,0 +1,60 @@
+params:  
+  algo:
+    name: a2c_continuous
+
+  model:
+    name: continuous_a2c_logstd
+
+  network:
+    name: actor_critic
+    separate: True
+    space:
+      continuous:
+        mu_activation: None
+        sigma_activation: None
+        mu_init:
+          name: default
+          scale: 0.02
+        sigma_init:
+          name: const_initializer
+          val: 0
+        fixed_sigma: True
+    mlp:
+      units: [400, 200, 100]
+      activation: elu
+      initializer:
+        name: default
+      regularizer:
+        name:  'None' #'l2_regularizer'
+        #scale: 0.001
+
+  config:
+      reward_shaper:
+        scale_value: 0.1
+
+      normalize_advantage: True
+      gamma: 0.99
+      tau: 0.9
+      learning_rate: 3e-4
+      name: Humanoid
+      score_to_win: 100080
+      grad_norm: 1.0
+      entropy_coef: 0.0
+      truncate_grads: True
+      env_name: openai_gym
+      e_clip: 0.2
+      clip_value: True
+      num_actors: 16
+      horizon_length: 256
+      minibatch_size: 2048
+      mini_epochs: 12
+      critic_coef: 2
+      lr_schedule: adaptive
+      kl_threshold: 0.008
+      normalize_input: False
+      seq_length: 4
+      bounds_loss_coef: 0.0001
+      max_epochs: 10000
+
+      env_config:
+        name: Humanoid-v3

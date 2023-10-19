@@ -1,0 +1,53 @@
+
+#Cartpole MLP
+
+params:  
+  algo:
+    name: a2c_discrete
+
+  model:
+    name: discrete_a2c
+
+  load_checkpoint: False
+  load_path: path
+
+  network:
+    name: actor_critic
+    separate: True
+    space: 
+      discrete:
+    mlp:
+      units: [32, 32]
+      activation: relu
+      initializer:
+        name: default
+      regularizer:
+        name: None
+
+  config:
+    reward_shaper:
+        scale_value: 0.1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.9
+    learning_rate: 2e-4
+    name: cartpole_vel_info
+    score_to_win: 400
+    grad_norm: 1.0
+    entropy_coef: 0.01
+    truncate_grads: True
+    env_name: CartPole-v1
+    e_clip: 0.2
+    clip_value: True
+    num_actors: 16
+    horizon_length: 32
+    minibatch_size: 64
+    mini_epochs: 4
+    critic_coef: 1
+    lr_schedule:  None
+    kl_threshold: 0.008
+    normalize_input: False
+    save_best_after: 10
+    device: 'cuda'
+    multi_gpu: False
+

@@ -1,0 +1,3 @@
+task: ShadowHand
+env_name: shadow_hand
+description: to make the shadow hand spin the object to a target orientation 

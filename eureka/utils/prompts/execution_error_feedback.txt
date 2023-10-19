@@ -1,0 +1,1 @@
+Executing the reward function code above has the following error: {traceback_msg}. Please fix the bug and provide a new, improved reward function!

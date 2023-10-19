@@ -1,0 +1,35 @@
+# See schema in factory_schema_config_env.py for descriptions of common parameters.
+
+defaults:
+    - FactoryBase
+    - _self_
+    - /factory_schema_config_env
+
+sim:
+    disable_franka_collisions: False
+
+env:
+    env_name: 'FactoryEnvInsertion'
+
+    desired_subassemblies: ['round_peg_hole_4mm_loose', 
+                            'round_peg_hole_8mm_loose', 
+                            'round_peg_hole_12mm_loose', 
+                            'round_peg_hole_16mm_loose',
+                            'rectangular_peg_hole_4mm_loose', 
+                            'rectangular_peg_hole_8mm_loose', 
+                            'rectangular_peg_hole_12mm_loose', 
+                            'rectangular_peg_hole_16mm_loose']
+    plug_lateral_offset: 0.1  # Y-axis offset of plug before initial reset to prevent initial interpenetration with socket
+
+    # Subassembly options:
+    # {round_peg_hole_4mm_tight, round_peg_hole_4mm_loose,
+    # round_peg_hole_8mm_tight, round_peg_hole_8mm_loose,
+    # round_peg_hole_12mm_tight, round_peg_hole_12mm_loose,
+    # round_peg_hole_16mm_tight, round_peg_hole_16mm_loose,
+    # rectangular_peg_hole_4mm_tight, rectangular_peg_hole_4mm_loose,
+    # rectangular_peg_hole_8mm_tight, rectangular_peg_hole_8mm_loose,
+    # rectangular_peg_hole_12mm_tight, rectangular_peg_hole_12mm_loose,
+    # rectangular_peg_hole_16mm_tight, rectangular_peg_hole_16mm_loose,
+    # bnc, dsub, usb}
+    #
+    # NOTE: BNC, D-sub, and USB are currently unavailable while we await approval from manufacturers.

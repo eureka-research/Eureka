@@ -1,0 +1,3 @@
+defaults:
+  - AllegroHandLSTM
+  - _self_
