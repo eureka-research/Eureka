@@ -11,7 +11,8 @@
 [![GitHub license](https://img.shields.io/github/license/eureka-research/Eureka)](https://github.com/eureka-research/Eureka/blob/main/LICENSE)
 ______________________________________________________________________
 
-https://github.com/eureka-research/eureka-private/assets/21993118/40be762b-d2bc-431d-ba08-88ec107c5c6c
+https://github.com/eureka-research/Eureka/assets/21993118/1abb960d-321a-4de9-b311-113b5fc53d4a
+
 
 
 ![](images/eureka.png)
