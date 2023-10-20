@@ -3,7 +3,7 @@
 <div align="center">
 
 [[Website]](https://eureka-research.github.io)
-[[arXiv]](TODO)
+[[arXiv]](https://arxiv.org/abs/2310.12931)
 [[PDF]](https://eureka-research.github.io/assets/eureka_paper.pdf)
 
 [![Python Version](https://img.shields.io/badge/Python-3.8-blue.svg)](https://github.com/eureka-research/Eureka)
@@ -72,7 +72,7 @@ Each run will create a timestamp folder in `eureka/outputs` that saves the Eurek
 
 Other command line parameters can be found in `eureka/cfg/config.yaml`. The list of supported environments can be found in `eureka/cfg/env`.
 
-# Visualize Pen Spinning Policies
+# Eureka Pen Spinning Demo
 We have released Eureka pen spinning policy in `isaacgymenvs/isaacgymenvs/checkpoints`. Try visualizing it with the following command:
 ```
 cd isaacgymenvs/isaacgymenvs
@@ -118,8 +118,9 @@ If you find our work useful, please consider citing us!
 ```bibtex
 @article{ma2023eureka,
   title   = {Eureka: Human-Level Reward Design via Coding Large Language Models},
-  author  = {Yecheng Ma and William Liang and Guanzhi Wang and De-An Huang and Osbert Bastani and Dinesh Jayaraman and Yuke Zhu and Linxi Fan and Anima Anandkumar},
+  author  = {Yecheng Jason Ma and William Liang and Guanzhi Wang and De-An Huang and Osbert Bastani and Dinesh Jayaraman and Yuke Zhu and Linxi Fan and Anima Anandkumar},
   year    = {2023},
+  journal = {arXiv preprint arXiv: Arxiv-2310.12931}
 }
 ```
 
