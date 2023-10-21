@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 # Minimum dependencies required prior to installation
 INSTALL_REQUIRES = [
-    "charset-normalizer"
+    "charset-normalizer",
     "matplotlib",
     "openai",
     'torch<=2.0.0',
