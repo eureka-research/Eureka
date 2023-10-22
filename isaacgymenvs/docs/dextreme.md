@@ -2,7 +2,7 @@
 DeXtreme is our recent work on transferring cube rotation with allegro hand from simulations to the real world. This task is especially challenging due to increased number of contacts that come into play with doing physics simulation. Naturally, the transfer requires carefully modelling and scheduling the randomisation for both physics and non-physics parameters. More details of the work can be found on the website https://dextreme.org/ as well as the paper (accepted at ICRA 2023, London) available on arXiv https://arxiv.org/pdf/2210.13702.pdf.
 
 
-The work builds on top of our previously released `AllegroHand` environment but with changes to accomodate training for sim-to-real involving two different variants: ManualDR (where the ranges  of parameter domain randomisation are chosen by the user manually) and Automatic Domain Randomisation or ADR (where the ranges of the parameter are updated automatically based on periodic simulation performance benchmarking in the loop). 
+The work builds on top of our previously released `AllegroHand` environment but with changes to accommodate training for sim-to-real involving two different variants: ManualDR (where the ranges  of parameter domain randomisation are chosen by the user manually) and Automatic Domain Randomisation or ADR (where the ranges of the parameter are updated automatically based on periodic simulation performance benchmarking in the loop). 
 
 Overview 
 --------
