@@ -1,8 +1,0 @@
-# @package _global_
-hydra:
-  run:
-    dir: /home/user/workspace/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
-    subdir: ${hydra.job.num}_${hydra.job.override_dirname}
-  sweep:
-    dir: /home/user/workspace/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
-    subdir: ${hydra.job.num}_${hydra.job.override_dirname}

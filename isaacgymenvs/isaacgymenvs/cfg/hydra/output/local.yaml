@@ -1,10 +1,8 @@
 # @package _global_
 hydra:
   run:
-    # dir: /home/wliang/data/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
-    dir: /data2/jasonyma/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+    dir: ./outputs/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
     subdir: ${hydra.job.num}_${hydra.job.override_dirname}
   sweep:
-    # dir: /home/wliang/data/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
-    dir: /data2/jasonyma/isaac_gpt/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+    dir: ./outputs/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
     subdir: ${hydra.job.num}_${hydra.job.override_dirname}

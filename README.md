@@ -78,6 +78,7 @@ We have released Eureka pen spinning policy in `isaacgymenvs/isaacgymenvs/checkp
 cd isaacgymenvs/isaacgymenvs
 python train.py test=True headless=False force_render=True task=ShadowHandSpin checkpoint=checkpoints/EurekaPenSpinning.pth
 ```
+Note that this script use the default Isaac Gym renderer and not the Omniverse rendering in the paper videos.
 
 # Running Eureka on a New Environment
 1. Create a new IsaacGym environment; instructions can be found in [here](isaacgymenvs/docs/framework.md).
