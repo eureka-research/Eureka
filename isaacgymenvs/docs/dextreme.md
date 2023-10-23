@@ -11,7 +11,7 @@ There are two different classes **AllegroHandDextremeManualDR** and **AllegroHan
 
 Both the variants are trained with `Asymmetric Actor-Critic` where the `policy` only receives the input that is available in the real world while the `value function` receives additional privileged information available from the simulator. At inference, only the policy is used to obtain the action given the history of states and value function is discarded. For more information, please look at `Section 2` of the DeXtreme paper.
 
-As we will show below, both environments are compatible with the standard way of training with Isaac Gym via `python train.py task=<AllegroHandDextremeManualDR or AllegroHandDextremeADR>`. Additionally, the code uses `dictionary observations` enabled via `use_dict_obs=True` (set as default for these enviornments) in the `ADRVecTask` where the relevant observations needed for training are provided as dictionaries as opposed to filling in the data via slicing and indexing. This keeps it cleaner and easier to manage. Which observations to choose for the policy and value function can be described in the corresponding `yaml` files for training located in `cfg/train` folder. For instance, the policy in the [AllegroHandDextremeManualDRPPO.yaml](../isaacgymenvs/cfg/train/AllegroHandDextremeManualDRPPO.yaml) can be described below like 
+As we will show below, both environments are compatible with the standard way of training with Isaac Gym via `python train.py task=<AllegroHandDextremeManualDR or AllegroHandDextremeADR>`. Additionally, the code uses `dictionary observations` enabled via `use_dict_obs=True` (set as default for these environments) in the `ADRVecTask` where the relevant observations needed for training are provided as dictionaries as opposed to filling in the data via slicing and indexing. This keeps it cleaner and easier to manage. Which observations to choose for the policy and value function can be described in the corresponding `yaml` files for training located in `cfg/train` folder. For instance, the policy in the [AllegroHandDextremeManualDRPPO.yaml](../isaacgymenvs/cfg/train/AllegroHandDextremeManualDRPPO.yaml) can be described below like 
 
 ```
     inputs:
@@ -226,7 +226,7 @@ ADR Params after loading from checkpoint: {'hand_damping': {'range_path': 'actor
 
 # Multi-GPU settings 
 
-If you want to train on multiple GPUs (or a single DGX node), we also provide training scripts and the code to run both Manual DR as well as ADR below. The ${GPUS} variable needs to be set beforehand in your bash e.g. GPUS=8 if you are using a single node. Throughout our experimentation for the DeXtreme work, We trained our policies on a single node containg 8 NVIDIA A40 GPUs.
+If you want to train on multiple GPUs (or a single DGX node), we also provide training scripts and the code to run both Manual DR as well as ADR below. The ${GPUS} variable needs to be set beforehand in your bash e.g. GPUS=8 if you are using a single node. Throughout our experimentation for the DeXtreme work, We trained our policies on a single node containing 8 NVIDIA A40 GPUs.
 
 # Manual DR 
 
