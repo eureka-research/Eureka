@@ -184,9 +184,9 @@ if __name__ == "__main__":
             "shadow_hand_swing_cup", "shadow_hand_switch",
             "shadow_hand_two_catch_underarm"]
 
-    for reward_name, task in tasks:
+    for task in tasks:
         # Create base environment file to write reward function for
-        modify_python_file(reward_name, f"{ISAAC_ROOT_DIR}/tasks/{task}.py", f"../envs/dexterity/{task}.py")
+        modify_python_file(f"{ISAAC_ROOT_DIR}/tasks/{task}.py", f"../envs/dexterity/{task}.py")
 
         # Create a condensed version to serve as context to Eureka
         prune_python_class(f"../envs/dexterity/{task}.py", f"../envs/dexterity/{task}_obs.py", 
