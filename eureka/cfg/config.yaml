@@ -22,6 +22,6 @@ capture_video: False # whether to capture policy rollout videos
 max_retries: 5 # maximum number of attempts to generate a valid Eureka sample
 
 # Weights and Biases
-use_wandb: True # whether to use wandb for logging
-wandb_username: "Yinliang Chen" # wandb username if logging with wandb
-wandb_project: "Eureka" # wandb project if logging with wandb
+use_wandb: False # whether to use wandb for logging
+wandb_username: "" # wandb username if logging with wandb
+wandb_project: "" # wandb project if logging with wandb
