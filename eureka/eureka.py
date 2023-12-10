@@ -5,7 +5,6 @@ import logging
 import matplotlib.pyplot as plt
 import os
 from openai import OpenAI
-import httpx
 import re
 import subprocess
 from pathlib import Path
@@ -19,18 +18,6 @@ from utils.extract_task_code import *
 
 EUREKA_ROOT_DIR = os.getcwd()
 ISAAC_ROOT_DIR = f"{EUREKA_ROOT_DIR}/../isaacgymenvs/isaacgymenvs"
-AIRSIMRL_ROOT_DIR = f"{EUREKA_ROOT_DIR}/../airsim_rl"
-
-proxy_url = 'http://127.0.0.1:7890'
-
-httpx_client = httpx.Client(proxies={
-    'http://': proxy_url,
-    'https://': proxy_url,
-    }
-)
-
-import logging
-import time
 
 def process_code(response_cur, task_code_string, output_file, iter, response_id, code_runs):
     # Regex patterns to extract python code enclosed in GPT response
@@ -100,7 +87,7 @@ def main(cfg):
     logging.info(f"Workspace: {workspace_dir}")
     logging.info(f"Project Root: {EUREKA_ROOT_DIR}")
 
-    client = OpenAI(http_client=httpx_client)
+    client = OpenAI()
 
     # Load the task code
     task = cfg.env.task
@@ -157,7 +144,7 @@ def main(cfg):
         total_samples = 0
         total_token = 0
         total_completion_token = 0
-        chunk_size = cfg.sample  #  how many samples to generate at a time
+        chunk_size = cfg.sample if "gpt-3.5" in model else 4
 
         logging.info(f"Iteration {iter}: Generating {cfg.sample} samples with {cfg.model}")
 
@@ -212,7 +199,7 @@ def main(cfg):
             
             # Execute the python file with flags
             rl_filepath = f"env_iter{iter}_response{response_id}.txt"
-            for retry in range(cfg.max_retries):
+            for retry in range(cfg.max_retries): # loop for retrying failed runs
                 with open(rl_filepath, 'w') as f:
                     process = subprocess.Popen(['python', '-u', f'{ISAAC_ROOT_DIR}/train.py',
                                                 'hydra/output=subprocess',
