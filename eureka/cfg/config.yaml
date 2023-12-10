@@ -9,7 +9,7 @@ hydra:
     chdir: True
 
 # LLM parameters
-model: gpt-4-0314  # LLM model (other options are gpt-4, gpt-4-0613, gpt-3.5-turbo-16k-0613)
+model: gpt-4-1106-preview # LLM model (other options are gpt-4, gpt-4-0613, gpt-3.5-turbo-16k-0613)
 temperature: 1.0
 suffix: GPT  # suffix for generated files (indicates LLM model)
 
@@ -19,8 +19,9 @@ sample: 3 # number of Eureka samples to generate per iteration
 max_iterations: 3000 # RL Policy training iterations (decrease this to make the feedback loop faster)
 num_eval: 5 # number of evaluation episodes to run for the final reward
 capture_video: False # whether to capture policy rollout videos
+max_retries: 5 # maximum number of attempts to generate a valid Eureka sample
 
 # Weights and Biases
-use_wandb: False # whether to use wandb for logging
-wandb_username: "" # wandb username if logging with wandb
-wandb_project: "" # wandb project if logging with wandb
+use_wandb: True # whether to use wandb for logging
+wandb_username: "Yinliang Chen" # wandb username if logging with wandb
+wandb_project: "Eureka" # wandb project if logging with wandb
