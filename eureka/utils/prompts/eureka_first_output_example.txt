@@ -1,0 +1,18 @@
+‘‘‘python
+import torch
+from typing import Tuple, Dict
+@torch.jit.script
+def compute_reward(object_rot: torch.Tensor, goal_rot: torch.Tensor) -> Tuple[torch.Tensor,
+Dict[str, torch.Tensor]]:
+rot_diff = torch.abs(torch.sum(object_rot * goal_rot, dim=1) - 1) / 2
+rotation_reward = torch.exp(-20 * rot_diff)
+# Scaling factor for the rotation reward
+rotation_temp = 20.0
+total_reward = rotation_reward
+reward_components = {
+"rotation_reward": rotation_reward
+}
+return total_reward, reward_components
+‘‘‘
+This reward function computes the difference between the current object rotation and the
+target rotation. It calculates a rotation_reward based on the absolute difference, scal
