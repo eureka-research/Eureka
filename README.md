@@ -39,7 +39,7 @@ pip install -e .
 
 3. Install Eureka
 ```
-git clone https://github.com/eureka-research/Eureka.git
+git clone https://github.com/schashni/Eureka.git
 cd Eureka; pip install -e .
 cd isaacgymenvs; pip install -e .
 cd ../rl_games; pip install -e .
