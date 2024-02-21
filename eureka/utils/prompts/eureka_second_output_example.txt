@@ -1,0 +1,38 @@
+Iteration 2: Eureka Output:
+Based on the analysis of the policy feedback, the rotation_reward component has minimum,
+maximum, and mean values within a fairly close range and seems stable. The success_rate
+has increased gradually, indicating that the agent is learning to some degree. However,
+the episode_lengths have quite some variance, which could indicate that the agent does
+not consistently perform well during training.
+26
+Since the rotation_reward component seems mostly adequate, I would recommend introducing
+another component, such as a penalty for large angular velocities, to reinforce stable
+spinning behavior. Here is a new reward function that incorporates an
+angular_velocity_penalty:
+‘‘‘python
+import torch
+from typing import Tuple, Dict
+@torch.jit.script
+def compute_reward(object_rot: torch.Tensor, goal_rot: torch.Tensor, object_angvel: torch.
+Tensor) -> Tuple[torch.Tensor, Dict[str, torch.Tensor]]:
+# Rotation reward
+rot_diff = torch.abs(torch.sum(object_rot * goal_rot, dim=1) - 1) / 2
+rotation_reward = torch.exp(-20 * rot_diff)
+rotation_temp = 20.0
+# Angular velocity penalty
+angvel_norm = torch.norm(object_angvel, dim=1)
+angvel_threshold = 5.0
+angvel_penalty_temp = 10.0
+angular_velocity_penalty = torch.where(angvel_norm > angvel_threshold, torch.exp(-
+angvel_penalty_temp * (angvel_norm - angvel_threshold)), torch.zeros_like(angvel_norm))
+total_reward = rotation_reward - angular_velocity_penalty
+reward_components = {
+"rotation_reward": rotation_reward,
+"angular_velocity_penalty": angular_velocity_penalty
+}
+return total_reward, reward_components
+‘‘‘
+The new reward function applies a penalty for large angular velocities (larger than the
+angvel_threshold) using a temperature parameter (angvel_penalty_temp) to scale the
+penalty. The total reward now combines the rotation_reward with the
+angular_velocity_penalty.
