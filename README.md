@@ -1,4 +1,4 @@
-# Eureka: Human-Level Reward Design via Coding Large Language Models
+# Eureka: Human-Level Reward Design via Coding Large Language Models (ICLR 2024)
 
 <div align="center">
 
