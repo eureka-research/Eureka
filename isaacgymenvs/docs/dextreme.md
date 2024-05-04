@@ -1,8 +1,7 @@
-
 DeXtreme is our recent work on transferring cube rotation with allegro hand from simulations to the real world. This task is especially challenging due to increased number of contacts that come into play with doing physics simulation. Naturally, the transfer requires carefully modelling and scheduling the randomisation for both physics and non-physics parameters. More details of the work can be found on the website https://dextreme.org/ as well as the paper (accepted at ICRA 2023, London) available on arXiv https://arxiv.org/pdf/2210.13702.pdf.
 
 
-The work builds on top of our previously released `AllegroHand` environment but with changes to accomodate training for sim-to-real involving two different variants: ManualDR (where the ranges  of parameter domain randomisation are chosen by the user manually) and Automatic Domain Randomisation or ADR (where the ranges of the parameter are updated automatically based on periodic simulation performance benchmarking in the loop). 
+The work builds on top of our previously released `AllegroHand` environment but with changes to accommodate training for sim-to-real involving two different variants: ManualDR (where the ranges  of parameter domain randomisation are chosen by the user manually) and Automatic Domain Randomisation or ADR (where the ranges of the parameter are updated automatically based on periodic simulation performance benchmarking in the loop). 
 
 Overview 
 --------
@@ -11,7 +10,7 @@ There are two different classes **AllegroHandDextremeManualDR** and **AllegroHan
 
 Both the variants are trained with `Asymmetric Actor-Critic` where the `policy` only receives the input that is available in the real world while the `value function` receives additional privileged information available from the simulator. At inference, only the policy is used to obtain the action given the history of states and value function is discarded. For more information, please look at `Section 2` of the DeXtreme paper.
 
-As we will show below, both environments are compatible with the standard way of training with Isaac Gym via `python train.py task=<AllegroHandDextremeManualDR or AllegroHandDextremeADR>`. Additionally, the code uses `dictionary observations` enabled via `use_dict_obs=True` (set as default for these enviornments) in the `ADRVecTask` where the relevant observations needed for training are provided as dictionaries as opposed to filling in the data via slicing and indexing. This keeps it cleaner and easier to manage. Which observations to choose for the policy and value function can be described in the corresponding `yaml` files for training located in `cfg/train` folder. For instance, the policy in the [AllegroHandDextremeManualDRPPO.yaml](../isaacgymenvs/cfg/train/AllegroHandDextremeManualDRPPO.yaml) can be described below like 
+As we will show below, both environments are compatible with the standard way of training with Isaac Gym via `python train.py task=<AllegroHandDextremeManualDR or AllegroHandDextremeADR>`. Additionally, the code uses `dictionary observations` enabled via `use_dict_obs=True` (set as default for these environments) in the `ADRVecTask` where the relevant observations needed for training are provided as dictionaries as opposed to filling in the data via slicing and indexing. This keeps it cleaner and easier to manage. Which observations to choose for the policy and value function can be described in the corresponding `yaml` files for training located in `cfg/train` folder. For instance, the policy in the [AllegroHandDextremeManualDRPPO.yaml](../isaacgymenvs/cfg/train/AllegroHandDextremeManualDRPPO.yaml) can be described below like 
 
 ```
     inputs:
@@ -84,7 +83,7 @@ For the [AllegroHandDextremeADR.yaml](../isaacgymenvs/cfg/task/AllegroHandDextre
 You will also see that there are two key variables: `limits` and `delta`. The variable `limits` refers to the complete range within which the parameter is permitted to move, while `delta` represents the incremental change that the parameter can undergo with each ADR update. These variables play a crucial role in determining the scope and pace of parameter adjustments made by ADR.
 
 
-We highly recommend to familiarise yourself with the codebase and configuration files first before training to understand the relevant classes and the inheritence involved. 
+We highly recommend to familiarise yourself with the codebase and configuration files first before training to understand the relevant classes and the inheritance involved. 
 
 Below we provide the exact settings for training the two different variants of the environment we used in our work for reproducibility.
 
@@ -244,7 +243,7 @@ Similarly for ADR:
 torchrun --nnodes=1 --nproc_per_node=${GPUS} --master_addr '127.0.0.1' ${HYDRA_ADR}
 ```
 
-Below, we show the npd (nats per dimension cf. Algorithm 5.2 [OpenAI et al. 2019](https://arxiv.org/pdf/1910.07113.pdf) and Section 2.6.3 [DeXtreme](https://arxiv.org/pdf/2210.13702.pdf)) graphs of two batches of 8 different trials each run on a single node (8 GPUs) across different weeks. Each of these plots are meant to highlight the variability in the runs. Increase in npd means the networks are being trained on more divesity.
+Below, we show the npd (nats per dimension cf. Algorithm 5.2 [OpenAI et al. 2019](https://arxiv.org/pdf/1910.07113.pdf) and Section 2.6.3 [DeXtreme](https://arxiv.org/pdf/2210.13702.pdf)) graphs of two batches of 8 different trials each run on a single node (8 GPUs) across different weeks. Each of these plots are meant to highlight the variability in the runs. Increase in npd means the networks are being trained on more diversity.
 
 ![npd_1](./images/npd_1.jpg)
 
