@@ -1,11 +1,11 @@
-# RL Games: High performance RL library  
+# RL Games: High-performance RL library  
 
 ## Discord Channel Link 
 * https://discord.gg/hnYRq7DsQh
 
 ## Papers and related links
 
-* Isaac Gym: High Performance GPU-Based Physics Simulation For Robot Learning: https://arxiv.org/abs/2108.10470
+* Isaac Gym: High-Performance GPU-Based Physics Simulation For Robot Learning: https://arxiv.org/abs/2108.10470
 * DeXtreme: Transfer of Agile In-Hand Manipulation from Simulation to Reality: https://dextreme.org/ https://arxiv.org/abs/2210.13702
 * Transferring Dexterous Manipulation from GPU Simulation to a Remote Real-World TriFinger: https://s2r2-ig.github.io/ https://arxiv.org/abs/2108.09779
 * Is Independent Learning All You Need in the StarCraft Multi-Agent Challenge? <https://arxiv.org/abs/2011.09533>
@@ -53,7 +53,7 @@ Implemented in Pytorch:
 
 ## Quickstart: Colab in the Cloud
 
-Explore RL Games quick and easily in colab notebooks:
+Explore RL Games quickly and easily in colab notebooks:
 
 * [Mujoco training](https://colab.research.google.com/github/Denys88/rl_games/blob/master/notebooks/mujoco_envpool_training.ipynb) Mujoco envpool training example.
 * [Brax training](https://colab.research.google.com/github/Denys88/rl_games/blob/master/notebooks/brax_training.ipynb) Brax training example, with keeping all the observations and actions on GPU.
@@ -75,7 +75,7 @@ Then:
 To run CPU-based environments either Ray or envpool are required ```pip install envpool``` or ```pip install ray```
 To run Mujoco, Atari games or Box2d based environments training they need to be additionally installed with ```pip install gym[mujoco]```, ```pip install gym[atari]``` or ```pip install gym[box2d]``` respectively.
 
-To run Atari also ```pip install opencv-python``` is required. In addition installation of envpool for maximum simulation and training perfromance of Mujoco and Atari environments is highly recommended: ```pip install envpool```
+To run Atari also ```pip install opencv-python``` is required. In addition, installation of envpool for maximum simulation and training performance of Mujoco and Atari environments is highly recommended: ```pip install envpool```
 
 ## Citing
 
@@ -174,11 +174,11 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 runner.py --train --file rl_
 | name                   | continuous_a2c_logstd     | None    | Possible values: continuous_a2c ( expects sigma to be (0, +inf), continuous_a2c_logstd  ( expects sigma to be (-inf, +inf), a2c_discrete, a2c_multi_discrete |
 | network                |                           |         | Network description.                                                                                                                                         |
 | name                   | actor_critic              |         | Possible values: actor_critic or soft_actor_critic.                                                                                                          |
-| separate               | False                     |         | Whether use or not separate network with same same architecture for critic. In almost all cases if you normalize value it is better to have it False         |
+| separate               | False                     |         | Whether use or not separate network with same architecture for critic. In almost all cases if you normalize value it is better to have it False         |
 | space                  |                           |         | Network space                                                                                                                                                |
 | continuous             |                           |         | continuous or discrete                                                                                                                                       |
 | mu_activation          | None                      |         | Activation for mu. In almost all cases None works the best, but we may try tanh.                                                                             |
-| sigma_activation       | None                      |         | Activation for sigma. Will be threated as log(sigma) or sigma depending on model.                                                                            |
+| sigma_activation       | None                      |         | Activation for sigma. Will be treated as log(sigma) or sigma depending on model.                                                                            |
 | mu_init                |                           |         | Initializer for mu.                                                                                                                                          |
 | name                   | default                   |         |                                                                                                                                                              |
 | sigma_init             |                           |         | Initializer for sigma. if you are using logstd model good value is 0.                                                                                        |
@@ -238,16 +238,16 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 runner.py --train --file rl_
 | minibatch_size_per_env | 8                         |         | Minibatch size per env. If specified will overwrite total number number the default minibatch size with minibatch_size_per_env * nume_envs value.            |
 | mini_epochs            | 4                         |         | Number of miniepochs. Good value is in [1,10]                                                                                                                |
 | critic_coef            | 2                         |         | Critic coef. by default critic_loss = critic_coef * 1/2 * MSE.                                                                                               |
-| lr_schedule            | adaptive                  | None    | Scheduler type. Could be None, linear or adaptive. Adaptive is the best for continuous control tasks. Learning rate is changed changed every miniepoch       |
-| kl_threshold           | 0.008                     |         | KL threshould for adaptive schedule. if KL < kl_threshold/2 lr = lr * 1.5 and opposite.                                                                      |
+| lr_schedule            | adaptive                  | None    | Scheduler type. Could be None, linear or adaptive. Adaptive is the best for continuous control tasks. Learning rate is changed every miniepoch       |
+| kl_threshold           | 0.008                     |         | KL threshold for adaptive schedule. if KL < kl_threshold/2 lr = lr * 1.5 and opposite.                                                                      |
 | normalize_input        | True                      |         | Apply running mean std for input.                                                                                                                            |
-| bounds_loss_coef       | 0.0                       |         | Coefficient to the auxiary loss for continuous space.                                                                                                        |
+| bounds_loss_coef       | 0.0                       |         | Coefficient to the auxiliary loss for continuous space.                                                                                                        |
 | max_epochs             | 10000                     |         | Maximum number of epochs to run.                                                                                                                             |
 | max_frames             | 5000000                   |         | Maximum number of frames (env steps) to run.                                                                                                                             |
 | normalize_value        | True                      |         | Use value running mean std normalization.                                                                                                                    |
 | use_diagnostics        | True                      |         | Adds more information into the tensorboard.                                                                                                                  |
 | value_bootstrap        | True                      |         | Bootstraping value when episode is finished. Very useful for different locomotion envs.                                                                      |
-| bound_loss_type        | regularisation            | None    | Adds aux loss for continuous case. 'regularisation' is the sum of sqaured actions. 'bound' is the sum of actions higher than 1.1.                            |
+| bound_loss_type        | regularisation            | None    | Adds aux loss for continuous case. 'regularisation' is the sum of squared actions. 'bound' is the sum of actions higher than 1.1.                            |
 | bounds_loss_coef       | 0.0005                    | 0       | Regularisation coefficient                                                                                                                                   |
 | use_smooth_clamp       | False                     |         | Use smooth clamp instead of regular for cliping                                                                                                              |
 | zero_rnn_on_done       | False                     | True    | If False RNN internal state is not reset (set to 0) when an environment is rest. Could improve training in some cases, for example when domain randomization is on |
@@ -256,7 +256,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 runner.py --train --file rl_
 | deterministic          | True                      | True    | Use deterministic policy ( argmax or mu) or stochastic.                                                                                                      |
 | use_vecenv             | True                      | False   | Use vecenv to create environment for player                                                                                                                  |
 | games_num              | 200                       |         | Number of games to run in the player mode.                                                                                                                   |
-| env_config             |                           |         | Env configuration block. It goes directly to the environment. This example was take for my atari wrapper.                                                    |
+| env_config             |                           |         | Env configuration block. It goes directly to the environment. This example was taken for my atari wrapper.                                                    |
 | skip                   | 4                         |         | Number of frames to skip                                                                                                                                     |
 | name                   | BreakoutNoFrameskip-v4    |         | The exact name of an (atari) gym env. An example, depends on the training env this parameters can be different.                                                                   |
 
@@ -277,9 +277,9 @@ Additional environment supported properties and functions
 
 | Field                      | Default Value | Description                                                                                                                                                                                              |
 | -------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| use_central_value          | False         | If true than returned obs is expected to be dict with 'obs' and 'state'                                                                                                                                  |
+| use_central_value          | False         | If true then returned obs is expected to be dict with 'obs' and 'state'                                                                                                                                  |
 | value_size                 | 1             | Shape of the returned rewards. Network wil support multihead value automatically.                                                                                                                        |
-| concat_infos               | False         | Should default vecenv convert list of dicts to the dicts of lists. Very usefull if you want to use value_boostrapping. in this case you need to always return 'time_outs' : True or False, from the env. |
+| concat_infos               | False         | Should default vecenv convert list of dicts to the dicts of lists. Very useful if you want to use value_boostrapping. in this case you need to always return 'time_outs' : True or False, from the env. |
 | get_number_of_agents(self) | 1             | Returns number of agents in the environment                                                                                                                                                              |
 | has_action_mask(self)      | False         | Returns True if environment has invalid actions mask.                                                                                                                                                    |
 | get_action_mask(self)      | None          | Returns action masks if  has_action_mask is true.  Good example is [SMAC Env](rl_games/envs/test/smac_env.py)                                                                                            |
@@ -297,7 +297,7 @@ Additional environment supported properties and functions
 
 1.6.0
 
-* Added ONNX export colab example for discrete and continious action spaces. For continuous case LSTM policy example is provided as well.
+* Added ONNX export colab example for discrete and continuous action spaces. For continuous case LSTM policy example is provided as well.
 * Improved RNNs training in continuous space, added option `zero_rnn_on_done`.
 * Added NVIDIA CuLE support: https://github.com/NVlabs/cule
 * Added player config everride. Vecenv is used for inference.
@@ -359,7 +359,7 @@ Additional environment supported properties and functions
 1.1.4
 
 * Fixed crash in a play (test) mode in player, when simulation and rl_devices are not the same.
-* Fixed variuos multi gpu errors.
+* Fixed various multi gpu errors.
 
 1.1.3
 
